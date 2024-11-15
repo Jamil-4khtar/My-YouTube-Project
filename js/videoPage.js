@@ -1,6 +1,7 @@
 import axios from "axios";
 import { darkMode } from "./darkMode";
 import { goHomeFunc } from "./goToHomePage";
+import { carryTextFunc } from "./app";
 // dark mode
 darkMode();
 // go to home
@@ -63,7 +64,7 @@ async function loadVideoDetails() {
         document.getElementById("like-count").innerText = videoData.statistics.likeCount;
         document.getElementById("comment-count").innerText = videoData.statistics.commentCount;
         document.getElementById("channel-name").innerText = videoData.snippet.channelTitle;
-        
+
         loadChannelDetails(videoData.snippet.channelId);
         loadComments();
     } catch (error) {
@@ -142,7 +143,7 @@ async function loadComments() {
     }
 }
 // load video details when page is loaded
-loadVideoDetails()
+
 
 // relatedVideos
 
@@ -174,8 +175,35 @@ async function loadRelatedVideos() {
                 </div>
             </div>
         `).join('');
+
+        const relatedVideos = document.querySelectorAll('.related-video-card');
+        relatedVideos.forEach(video => {
+            video.addEventListener("click", () => {
+                console.log("video is clicked");
+                console.log(video);
+                const videoId = video.dataset.videoId;
+                window.location.href = `videoPage.html?id=${videoId}`;
+            })
+        })
     } catch (error) {
         console.error('Error loading related videos:', error);
     }
 }
-loadRelatedVideos()
+// loadRelatedVideos()
+
+window.addEventListener("DOMContentLoaded", () => {
+    loadVideoDetails();
+    loadRelatedVideos();
+})
+
+
+// Search function
+const searchInput = document.getElementById('search-input');
+const searchButton = document.getElementById('search-button');
+
+searchButton.addEventListener("click", carryTextFunc)
+searchInput.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+        carryTextFunc();
+    }
+})

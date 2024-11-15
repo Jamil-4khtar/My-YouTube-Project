@@ -1,6 +1,7 @@
 import axios from "axios";
 import { goHomeFunc } from "./goToHomePage";
 import { darkMode } from "./darkMode";
+import { videoClickedFunc } from "./videoPage";
 
 // dark mode
 darkMode();
@@ -77,7 +78,7 @@ async function getChannelInfo(video) {
 // display each video
 function displayVideo(video) {
     videoContainer.innerHTML += `
-            <div class="video-card">
+            <div class="video-card" data-video-id="${video.id}">
 
                 <img class="thumbnails" src="${video.snippet.thumbnails.maxres.url}" alt="${video.snippet.description}" class="thumbnail">
 
@@ -93,6 +94,15 @@ function displayVideo(video) {
                 
             </div>
         `;
+
+    document.querySelectorAll('.video-card').forEach(video => {
+        video.addEventListener("click", () => {
+            console.log("video is clicked");
+            console.log(video);
+            const videoId = video.dataset.videoId;
+            window.location.href = `pages/videoPage.html?id=${videoId}`;
+        })
+    })
 }
 
 
@@ -111,13 +121,13 @@ searchInput.addEventListener("keypress", (e) => {
     }
 })
 
-function carryTextFunc() {
+export function carryTextFunc() {
     const searchText = searchInput.value.trim();
     if (searchText) {
         localStorage.setItem("searchText", JSON.stringify(searchText))
         // we can use function to carry the searchvalue as well
 
         // window.location.href = goToSearch;
-        window.location.href = "pages/searchPage.html";
+        window.location.href = "/pages/searchPage.html";
     }
 }
