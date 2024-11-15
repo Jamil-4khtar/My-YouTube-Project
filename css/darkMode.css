@@ -14,6 +14,10 @@ body.dark-mode {
     background: var(--secondary-color);
     color: var(--light-gray-color);
 }
+body.dark-mode #container {
+    background: var(--secondary-color);
+    color: var(--light-gray-color);
+}
 body.dark-mode .right button, body.dark-mode .center button {
     color: var(--light-gray-color);
     background: var(--overlay-dark-color);

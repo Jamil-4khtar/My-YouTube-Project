@@ -1,6 +1,7 @@
 import axios from "axios";
 import { goHomeFunc } from "./goToHomePage";
 import { darkMode } from "./darkMode";
+import { videoClickedFunc } from "./videoPage";
 
 // dark mode
 darkMode();
@@ -47,7 +48,7 @@ if (localStorage.getItem("videos")) {
     videoContainer.innerHTML = "";
 
     videos.forEach(video => {
-        console.log("🚀 ~ video from storage:", video)
+        // console.log("🚀 ~ video from storage:", video)
         displayVideo(video)
     });
 }
@@ -91,6 +92,9 @@ async function searchVideosFunc() {
     }
 }
 
+
+
+
 async function getChannelInfo(video) {
     try {
         let response = await axios.get(CHANNEL_API_URL, {
@@ -112,6 +116,7 @@ async function getChannelInfo(video) {
         displayVideo(video)
 
         localStorage.setItem("videos", JSON.stringify(ArrayOfVideos));
+
         
     } catch (error) {
         console.error("channel error dekho: ", error);
@@ -122,7 +127,7 @@ async function getChannelInfo(video) {
 function displayVideo(video) {
 
     videoContainer.innerHTML += `
-            <div class="video-card">
+            <div class="video-card" data-video-id = ${video.id.videoId}>
 
                 <img class="thumbnails" src="${video.snippet.thumbnails.high.url}" alt="${video.snippet.description}" class="thumbnail">
 
@@ -132,11 +137,20 @@ function displayVideo(video) {
                         <img class="channel-icon" src="${video.channelIcon.default.url}" alt="channel-logo">
                         <p class="channel-name">${video.snippet.channelTitle}</p>
                     </div>
+                    <p class="description">${video.snippet.description}</p>
 
                 </div>
                 
             </div>
         `;
+
+        document.querySelectorAll('.video-card').forEach(eachVideo => {
+            eachVideo.addEventListener("click", () => {
+                videoClickedFunc(eachVideo)
+            })
+        })
+        
+        
 }
 
 function handleSearch() {
