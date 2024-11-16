@@ -1,7 +1,6 @@
 import axios from "axios";
 import { goHomeFunc } from "./goToHomePage";
 import { darkMode } from "./darkMode";
-import { videoClickedFunc } from "./videoPage";
 
 // dark mode
 darkMode();
@@ -22,37 +21,18 @@ const API_KEY = "AIzaSyCvny8BgZliBGVdkYVUSVHl7vMtgjta3kE";
 const SEARCH_API_URL = "https://www.googleapis.com/youtube/v3/search";
 const CHANNEL_API_URL = "https://www.googleapis.com/youtube/v3/channels";
 
+
+
 // Search from HomePage
 if (localStorage.getItem("searchText")) {
     let searchText = JSON.parse(localStorage.getItem("searchText"));
-    
+
     searchInput.value = searchText;
 
-    searchVideosFunc();    
+    searchVideosFunc();
 
     localStorage.removeItem("searchText");
 }
-
-
-// reload the searced videos from the localStorage
-if (localStorage.getItem("videos")) {
-    console.log("trying to reload");
-    
-    let reloadText = JSON.parse(localStorage.getItem("reloadText"));
-    searchInput.value = reloadText.trim();
-
-    let videos = JSON.parse(localStorage.getItem("videos"));
-    // console.log("🚀 ~ localvideos:", videos)
-    videoContainer.innerHTML = "";
-    videoContainer.innerHTML = "Loading videos...";
-    videoContainer.innerHTML = "";
-
-    videos.forEach(video => {
-        // console.log("🚀 ~ video from storage:", video)
-        displayVideo(video)
-    });
-}
-
 
 // console.log(searchInput.value);
 async function searchVideosFunc() {
@@ -105,19 +85,19 @@ async function getChannelInfo(video) {
             }
         });
         const channelData = response.data.items[0].snippet.thumbnails;
-        
+
         video.channelIcon = channelData;
 
         console.log(video);
 
         ArrayOfVideos.push(video); // array of videos for localStorage
-        
+
         // display each video
         displayVideo(video)
 
         localStorage.setItem("videos", JSON.stringify(ArrayOfVideos));
 
-        
+
     } catch (error) {
         console.error("channel error dekho: ", error);
     }
@@ -144,19 +124,22 @@ function displayVideo(video) {
             </div>
         `;
 
-        document.querySelectorAll('.video-card').forEach(eachVideo => {
-            eachVideo.addEventListener("click", () => {
-                videoClickedFunc(eachVideo)
-            })
+    document.querySelectorAll('.video-card').forEach(eachVideo => {
+        eachVideo.addEventListener("click", () => {
+            console.log("video is clicked");
+            console.log(eachVideo);
+            const videoId = eachVideo.dataset.videoId;
+            window.location.href = `/pages/videoPage.html?id=${videoId}`;
         })
-        
-        
+    })
+
+
 }
 
 function handleSearch() {
     if (searchInput.value.trim()) {
         console.log("Searching...");
-        
+
         searchVideosFunc()
     }
 }
@@ -169,3 +152,28 @@ searchInput.addEventListener("keypress", (e) => {
         handleSearch()
     }
 });
+
+
+
+
+
+window.addEventListener("load", () => {
+    // reload the searced videos from the localStorage
+    if (localStorage.getItem("videos")) {
+        console.log("trying to reload");
+
+        let reloadText = JSON.parse(localStorage.getItem("reloadText"));
+        searchInput.value = reloadText.trim();
+
+        let videos = JSON.parse(localStorage.getItem("videos"));
+        // console.log("🚀 ~ localvideos:", videos)
+        videoContainer.innerHTML = "";
+        videoContainer.innerHTML = "Loading videos...";
+        videoContainer.innerHTML = "";
+
+        videos.forEach(video => {
+            // console.log("🚀 ~ video from storage:", video)
+            displayVideo(video)
+        });
+    }
+})

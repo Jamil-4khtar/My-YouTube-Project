@@ -1,7 +1,6 @@
 import axios from "axios";
 import { goHomeFunc } from "./goToHomePage";
 import { darkMode } from "./darkMode";
-import { videoClickedFunc } from "./videoPage";
 
 // dark mode
 darkMode();

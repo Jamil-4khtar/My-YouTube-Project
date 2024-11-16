@@ -50,3 +50,12 @@ body.dark-mode footer a {
 body.dark-mode .video-container {
     scrollbar-color: var(--black-color) var(--secondary-color);
 }
+
+
+body.dark-mode .modal-content {
+    background-color: var(--secondary-color);
+}
+
+body.dark-mode .error {
+    background-color: #4b3a3b;
+}

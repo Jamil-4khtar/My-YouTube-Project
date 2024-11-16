@@ -8,14 +8,17 @@ darkMode();
 goHomeFunc()
 
 // for other page 
-export function videoClickedFunc(video) {
-    console.log("video is clicked");
-    console.log(video);
-    const videoId = video.dataset.videoId;
-    window.location.href = `videoPage.html?id=${videoId}`;
-}
+// export function videoClickedFunc(video) {
+//     console.log("video is clicked");
+//     console.log(video);
+//     const videoId = video.dataset.videoId;
+//     window.location.href = `videoPage.html?id=${videoId}`;
+// }
+
+
 
 // base variables
+
 const API_KEY = "AIzaSyCvny8BgZliBGVdkYVUSVHl7vMtgjta3kE";
 let player = document.getElementById("player");
 const videoId = new URLSearchParams(window.location.search).get('id');
