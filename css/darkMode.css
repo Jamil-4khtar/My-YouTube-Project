@@ -1,5 +1,5 @@
 
-:root {
+/* :root {
     --white-color: #fff;
     --black-color: #000;
     --light-white-color: #f0f0f0;
@@ -8,7 +8,7 @@
     --primary-color: #3b82f6;
     --secondary-color: #171717;
     --overlay-dark-color: rgba(0, 0, 0, 0.6);
-}
+} */
 
 body.dark-mode {
     background: var(--secondary-color);
@@ -40,7 +40,7 @@ body.dark-mode main button {
 body.dark-mode aside .nav-container a {
     background: var(--overlay-dark-color) !important;
     color: var(--white-color);
-    border: 1px solid var(--light-gray-color);
+    /* border: 1px solid var(--light-gray-color); */
 }
 
 body.dark-mode footer a {
