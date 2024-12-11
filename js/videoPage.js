@@ -1,11 +1,11 @@
 import axios from "axios";
-import { darkMode } from "./darkMode";
+import { darkMode } from "./darkMode";  
 import { goHomeFunc } from "./goToHomePage";
 import { carryTextFunc } from "./app";
 // dark mode
-darkMode();
+// darkMode();
 // go to home
-goHomeFunc()
+goHomeFunc();
 
 // for other page 
 // export function videoClickedFunc(video) {
@@ -19,7 +19,7 @@ goHomeFunc()
 
 // base variables
 
-const API_KEY = "AIzaSyCvny8BgZliBGVdkYVUSVHl7vMtgjta3kE";
+const API_KEY = "AIzaSyD9NZ1estPeq_RfjEPiyMwqykH2ioZcB2k";
 let player = document.getElementById("player");
 const videoId = new URLSearchParams(window.location.search).get('id');
 

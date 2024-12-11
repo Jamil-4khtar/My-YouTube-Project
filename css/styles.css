@@ -81,6 +81,11 @@ header .left #logo i {
     color: #FF0000;
 }
 
+header .left .jamil {
+    margin-top: -10px;
+    font-size: 0.5em !important;
+}
+
 header .center {
     display: flex;
     align-items: center;

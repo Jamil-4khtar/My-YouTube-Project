@@ -1,11 +1,15 @@
 export function darkMode() {
     const toggleDark = document.getElementById('toggle-dark');
-
+    console.log(localStorage.getItem('darkMode'));
+    
     toggleDark.addEventListener('click', () => {
         const body = document.body;
         body.classList.toggle('dark-mode');
+        
         localStorage.setItem('darkMode', body.classList.contains('dark-mode'));
 
+        // console.log(localStorage.getItem('darkMode'));
+        
         // Update the theme icon
         // toggleDark.innerHTML = `<i class="uil uil-sun"></i>`;
 
@@ -27,4 +31,6 @@ export function darkMode() {
         body.classList.remove('dark-mode');
         toggleDark.innerHTML = `<i class="uil uil-moon"></i>`;
     }
+    console.log();
+    
 }

@@ -17,7 +17,7 @@ const videoContainer = document.querySelector('.video-container');
 const ArrayOfVideos = []; //for local search
 
 
-const API_KEY = "AIzaSyCvny8BgZliBGVdkYVUSVHl7vMtgjta3kE";
+const API_KEY = "AIzaSyD9NZ1estPeq_RfjEPiyMwqykH2ioZcB2k";
 const SEARCH_API_URL = "https://www.googleapis.com/youtube/v3/search";
 const CHANNEL_API_URL = "https://www.googleapis.com/youtube/v3/channels";
 
@@ -50,7 +50,7 @@ async function searchVideosFunc() {
                 part: "snippet",
                 regionCode: "US",
                 q: searchInput.value.trim(),
-                maxResults: 7
+                maxResults: 70
             }
         });
         let videos = response.data.items;

@@ -12,7 +12,7 @@ const searchInput = document.getElementById('search-input');
 const searchButton = document.getElementById('search-button');
 const videoContainer = document.querySelector('.video-container');
 
-const API_KEY = "AIzaSyCvny8BgZliBGVdkYVUSVHl7vMtgjta3kE";
+const API_KEY = "AIzaSyD9NZ1estPeq_RfjEPiyMwqykH2ioZcB2k";
 
 const SEARCH_API_URL = "https://www.googleapis.com/youtube/v3/search";
 const VIDEO_API_URL = "https://www.googleapis.com/youtube/v3/videos";
@@ -27,7 +27,7 @@ async function fetchVideos() {
                 chart: "mostPopular",
                 part: "snippet",
                 regionCode: "US",
-                maxResults: 7
+                maxResults: 70
             }
         });
         videoContainer.innerHTML = "";

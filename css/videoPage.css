@@ -1,4 +1,4 @@
-@import url("./darkMode.css");
+@import url(./darkMode.css);
 
 * {
     margin: 0;
@@ -70,6 +70,12 @@ header .left #logo i {
     font-size: 46px !important;
     color: red !important;
 }
+
+header .left .jamil {
+    margin-top: -10px;
+    font-size: 0.5em;
+}
+
 
 header .center {
     display: flex;
